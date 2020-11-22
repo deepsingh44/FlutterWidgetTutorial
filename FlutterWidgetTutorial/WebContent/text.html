@@ -1,0 +1,109 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display&family=Inconsolata&display=swap');
+</style>
+</head>
+<div style="font-family: 'Big Shoulders Stencil Display', cursive;
+font-family: 'Inconsolata', monospace;"><p>Flutter Text widget allows you to display text in your Flutter application.</p>
+create an application::
+<p>
+In this application we use Scaffold widget wrapped with MaterialApp widget because 
+MaterialApp is a predefined class in a flutter. It is likely the main or core component of flutter. 
+We can access all the other components and widgets provided by Flutter SDK like Text widget, 
+DropDownButton widget, AppBar widget, Scaffold widget, ListView widget, StatelessWidget, 
+StatefulWidget, IconButton widget, TextField widget, Padding widget, ThemeData widget, etc. are the widgets 
+that can be accessed using MaterialApp class. 
+There are many more widgets that are accessed using MaterialApp class. 
+Using this widget, we can make an attractive application in Flutter.</p>
+
+<p>Now here main method is an entry point from where your application start.</p>
+
+<b>A widget is either stateful or stateless.</b> 
+<p>If a widget can change—when a user interacts with it, for example —> it’s stateful.</p>
+
+<p>A stateless widget never changes. Icon, IconButton, and Text are examples of stateless widgets. 
+Stateless widgets subclass StatelessWidget.</p>
+
+<p>A stateful widget is dynamic: for example, it can change its appearance in response to events triggered by user interactions or when it receives data. 
+Checkbox, Radio, Slider, InkWell, Form, and TextField are examples of stateful widgets. 
+Stateful widgets subclass StatefulWidget.</p>
+
+<p>A widget’s state is stored in a State object, separating the widget’s state from its appearance. 
+The state consists of values that can change, like a slider’s current value or whether 
+a checkbox is checked. When the widget’s state changes, the state object calls setState(), 
+telling the framework to redraw the widget.</p>
+
+<p>So we are using StatelessWidget because we want to used Text widget.</p>
+
+<pre>
+<code style="font-family: 'Big Shoulders Stencil Display', cursive;
+font-family: 'Inconsolata', monospace;">
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Text Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyWidgetTutorial(),
+    );
+  }
+}
+
+class MyWidgetTutorial extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Text Demo"),
+      ),
+      //we can call a custom method that return a widget
+      body: getTextWidget(context),
+    );
+  }
+}
+
+//this is a method that return a widget
+Widget getTextWidget(BuildContext context) {
+  return Container(
+    //this is used  to set background color of container
+    color: Colors.red,
+    //this is used to provide parent width of device.
+    width: MediaQuery.of(context).size.width,
+    //this is used to provide height of container
+    height: 100,
+    //using this we can add another widget
+    child: Center(
+      //using child we can also add another widget 
+      child: Text(
+        "Hello Text Widget Hello Text Widget Hello Text Widget Hello Text Widget Hello Text Widget Hello Text Widget",
+        //font size given by the user setting that is not fix
+        textScaleFactor: 2,
+        maxLines: 1,
+        //it uses ... when text length is overflow
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+            //font size given by the programmer that is fix
+            fontSize: 15,
+            backgroundColor: Colors.black,
+            //text color define here
+            color: Colors.white,
+            fontStyle: FontStyle.italic,
+            fontFamily: "sans serif",
+            fontWeight: FontWeight.bold),
+            //align the text with in the container
+            textAlign: TextAlign.center,
+      ),
+    ),
+  );
+}</code></pre>
+</div>

@@ -1,0 +1,104 @@
+<h1>Stack Widget Tutorial</h1>
+<p>A Stack widget allows us to make multiple widgets overlay each
+	other. This not only allows brilliant custom designs but also some
+	really cool animations.</p>
+<div align="center">
+	<img src="images/stack.png" width="250" height="400">
+</div>
+
+<p>The size of the Stack is the size of the largest member in the
+	layer. So if the bottom layer covers the complete screen then the size
+	of the Stack is the complete screen. you can align or position your
+	widget using the Align or Positioned widget. An Align widget usually
+	takes widget to extreme positions. So for example, if we enter
+	top-right, we need to add extra padding to keep it neat and tidy. A
+	Positioned widget combines these two things and lets us keep one
+	Positioned widget instead of an Align and a Padding.</p>
+<pre>
+<code>
+import 'package:flutter/material.dart';
+
+class StackDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Stack(
+          //fit: StackFit.expand,
+          //textDirection: TextDirection.ltr,
+
+          children: [
+            Positioned(
+              left: 20.0,
+              child: Icon(
+                Icons.monetization_on,
+                size: 36.0,
+                color: const Color.fromRGBO(218, 165, 32, 1.0),
+              ),
+            ),
+            Positioned(
+              right: 20.0,
+              child: Icon(
+                Icons.monetization_on,
+                size: 36.0,
+                color: const Color.fromRGBO(218, 165, 32, 1.0),
+              ),
+            ),
+            Positioned(
+              bottom: 20.0,
+              child: Icon(
+                Icons.monetization_on,
+                size: 36.0,
+                color: const Color.fromRGBO(218, 165, 32, 1.0),
+              ),
+            ),
+            Positioned(
+              right: 20.0,
+              bottom: 20.0,
+              child: Icon(
+                Icons.monetization_on,
+                size: 36.0,
+                color: const Color.fromRGBO(218, 165, 32, 1.0),
+              ),
+            ),
+            Center(
+              child: Container(
+                width: 200,
+                height: 200,
+                color: Colors.red,
+                child: Banner(
+                  message: "Bottom",
+                  location: BannerLocation.topStart,
+                ),
+              ),
+            ),
+            Center(
+              child: Container(
+                width: 150,
+                height: 150,
+                color: Colors.green,
+                child: Banner(
+                  message: "Middle",
+                  location: BannerLocation.topStart,
+                ),
+              ),
+            ),
+            Center(
+              child: Container(
+                width: 100,
+                height: 100,
+                color: Colors.yellow,
+                child: Banner(
+                  message: "Top",
+                  location: BannerLocation.topStart,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+</code>
+</pre>

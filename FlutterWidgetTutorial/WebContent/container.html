@@ -1,0 +1,21 @@
+<h1>Container Widget Tutorial</h1>
+<p>Container widget is used to contain a child widget with the
+	ability to apply some styling properties. If the Container widget has
+	no child it will automatically fill the given area on the screen,
+	otherwise it will wrap the height & width of the given child element.</p>
+<b> Container Widget should not render directly without any parent
+	widget. You can use Center widget, Padding Widget, Column Widget, Row
+	Widget or Scaffold Widget as parent. </b>
+<p>This widget can only have one child. To lay out multiple
+	children, let this widget’s child be a widget such as Row, Column, or
+	Stack, which have a children property, and then provide the children to
+	that widget.</p>
+	<pre>
+	color: Color.fromARGB(255, 66, 165, 245),
+    alignment: AlignmentDirectional(0.0, 0.0),
+	margin: new EdgeInsets.all(20.0),
+	margin: new EdgeInsets.symmetric(
+        vertical: 20.0,
+        horizontal: 50.0
+      ),
+      padding: new EdgeInsets.all(40.0),</pre>
