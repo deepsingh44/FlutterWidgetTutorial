@@ -1,0 +1,38 @@
+<h1>SharedPreferences Tutorial</h1>
+<p>SharedPreference is a key-value pair relationship that is used to
+	store data in app memory in key-value format. Means every key will have
+	some specific value which is used for storing and retrieving the value.</p>
+<p>We can only add int, String, double and bool using
+	SharedPreferences.</p>
+<p>You need to add dependency</p>
+<p>
+	shared_preferences:
+	<latest version>
+</p>
+<b>Import the package</b>
+<p>import 'package:shared_preferences/shared_preferences.dart';</p>
+<b>Set value in SharedPreference :</b>
+<pre>
+<code>
+saveData() async {
+  SharedPreferences sp = await SharedPreferences.getInstance();
+  sp.setString("name", "Deep Singh");
+}
+</code>
+</pre>
+<p>Here name is a key and value as a String. We can also store
+	different type of values like : setInt(); setDouble(); setBool();</p>
+	<b>Get value from SharedPreference :</b>
+<pre>
+<code>
+String getData() async {
+  SharedPreferences sp = await SharedPreferences.getInstance();
+  String value=sp.getString("name");
+  return value;
+}
+</code>
+</pre>
+<p>Here using getString() method we can get name passing the key. We can also get
+	different type of values like : getInt(); getDouble(); getBool();</p>
+	<b>To insure null check we can use below syntax:</b>
+	<p>String value = await getValue() ?? "";</p>
