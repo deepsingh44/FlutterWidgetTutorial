@@ -6,16 +6,33 @@
 <b> Container Widget should not render directly without any parent
 	widget. You can use Center widget, Padding Widget, Column Widget, Row
 	Widget or Scaffold Widget as parent. </b>
-<p>This widget can only have one child. To lay out multiple
-	children, let this widget’s child be a widget such as Row, Column, or
-	Stack, which have a children property, and then provide the children to
-	that widget.</p>
-	<pre>
+<p>This widget can only have one child. To layout multiple children,
+	let this widget’s child be a widget such as Row, Column, or Stack,
+	which have a children property, and then provide the children to that
+	widget.</p>
+<pre>
 	color: Color.fromARGB(255, 66, 165, 245),
     alignment: AlignmentDirectional(0.0, 0.0),
+    alignment: Alignment.bottomCenter,
 	margin: new EdgeInsets.all(20.0),
 	margin: new EdgeInsets.symmetric(
         vertical: 20.0,
         horizontal: 50.0
       ),
-      padding: new EdgeInsets.all(40.0),</pre>
+      padding: new EdgeInsets.all(40.0),
+      </pre>
+<p>If you want apply decoration in Container:</p>
+<pre>
+      decoration: BoxDecoration(  
+            border: Border.all(color: Colors.black, width: 4),  
+            borderRadius: BorderRadius.circular(8),  
+            boxShadow: [  
+             BoxShadow(color: Colors.yellow, offset: Offset(6.0, 6.0),),  
+            ],  
+       ),  
+      </pre>
+<p>If you want to transform the container widget in any axis like
+	x,y or z:</p>
+<pre>
+      transform: Matrix4.rotationZ(0.5),
+      </pre>

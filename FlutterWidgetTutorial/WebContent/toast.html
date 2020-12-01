@@ -1,0 +1,21 @@
+<h1>Toast Tutorial in Flutter</h1>
+<p>In Flutter we can also use Toast just like Android but for this
+	we need to add below dependency in pubspec.yaml file.</p>
+<b>fluttertoast: ^7.1.5</b>
+<p>After adding this dependency we need to pub get to get
+	dependency.</p>
+<p>For use of Flutter Toast firstly we need to import its package
+	then use the class.</p>
+<b>import 'package:fluttertoast/fluttertoast.dart';</b>
+<pre>
+<code>
+			  Fluttertoast.showToast(
+              msg: "Hello Friends",
+              backgroundColor: Colors.orange,
+              toastLength: Toast.LENGTH_LONG,
+              gravity: ToastGravity.BOTTOM,
+              fontSize: 20,
+              textColor: Colors.blue,
+            );
+</code>
+</pre>
