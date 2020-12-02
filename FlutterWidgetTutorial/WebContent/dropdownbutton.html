@@ -1,0 +1,120 @@
+<h1>DropDownButton Tutorial</h1>
+<p>To select a value from DropDownButton in Flutter and how to create below is an example.</p>
+<pre>
+<code>
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+void main() {
+  runApp(MyWid());
+}
+
+class MyWid extends StatefulWidget {
+  @override
+  State<MyWid> createState() => MyWidget();
+}
+
+class MyWidget extends State<MyWid> {
+  Country selectedCountry;
+  List<Country> countries = <Country>[
+    Country(
+        'Select Country',
+        Icon(
+          Icons.flag,
+          color: const Color(0xFF167F67),
+        )),
+    Country(
+        'India',
+        Icon(
+          Icons.access_alarm,
+          color: const Color(0xFF167F67),
+        )),
+    Country(
+        'America',
+        Icon(
+          Icons.flag_outlined,
+          color: const Color(0xFF167F67),
+        )),
+    Country(
+        'Australia',
+        Icon(
+          Icons.email,
+          color: const Color(0xFF167F67),
+        )),
+    Country(
+        'Shrilanka',
+        Icon(
+          Icons.pages,
+          color: const Color(0xFF167F67),
+        )),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Hello World',
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Flutter Code"),
+        ),
+        body: getTextWidget(context),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.access_alarm),
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
+
+  Widget getTextWidget(BuildContext context) {
+    return DropdownButton(
+      hint: Row(
+        children: [
+          //set icon here
+          Icon(
+            Icons.map,
+            color: Colors.green,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text("Select Country"),
+        ],
+      ),
+      value: selectedCountry,
+      onChanged: (value) {
+        setState(() {
+          selectedCountry = value;
+        });
+      },
+      items: countries
+          .map((country) => DropdownMenuItem<Country>(
+                value: country,
+                child: Container(
+                  child: Row(
+                    children: [
+                      //set icon here
+                      country.icon,
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(country.name),
+                    ],
+                  ),
+                ),
+              ))
+          .toList(),
+    );
+  }
+}
+
+class Country {
+  Country(this.name, this.icon);
+  final String name;
+  final Icon icon;
+}
+
+
+	</code>
+</pre>
