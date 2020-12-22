@@ -1,0 +1,62 @@
+<h1>Check Internet Connection </h1>
+<b>Add below dependency in pubspec.yaml file:</b>
+<p>
+<pre>
+<b>connectivity: ^2.0.2</b>
+</pre>
+</p>
+<p>
+<pre>
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter/material.dart';
+
+class MyConnection extends StatefulWidget {
+  @override
+  _MyConnectionState createState() => _MyConnectionState();
+}
+
+class _MyConnectionState extends State<MyConnection> {
+  String result = "";
+  var color = Colors.white;
+
+  @override
+  void initState() {
+    checkInternet();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          color: color,
+          child: Center(
+            child: Text(result != null ? result : "Unknown"),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void checkInternet() {
+    Connectivity().onConnectivityChanged.listen((result) {
+      if (result == ConnectivityResult.mobile ||
+          result == ConnectivityResult.wifi) {
+        changeValue("!!Connected!!", Colors.yellow);
+      } else {
+        changeValue("!!Connected!!", Colors.red);
+      }
+    });
+  }
+
+  void changeValue(String s, Color color) {
+    setState(() {
+      result = s;
+      this.color = color;
+    });
+  }
+}
+
+</pre>
+</p>

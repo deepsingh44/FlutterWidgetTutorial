@@ -1,44 +1,48 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display&family=Inconsolata&display=swap');
-</style>
 </head>
-<div style="font-family: 'Big Shoulders Stencil Display', cursive;
-font-family: 'Inconsolata', monospace;"><p>Flutter Text widget allows you to display text in your Flutter application.</p>
-create an application::
-<p>
-In this application we use Scaffold widget wrapped with MaterialApp widget because 
-MaterialApp is a predefined class in a flutter. It is likely the main or core component of flutter. 
-We can access all the other components and widgets provided by Flutter SDK like Text widget, 
-DropDownButton widget, AppBar widget, Scaffold widget, ListView widget, StatelessWidget, 
-StatefulWidget, IconButton widget, TextField widget, Padding widget, ThemeData widget, etc. are the widgets 
-that can be accessed using MaterialApp class. 
-There are many more widgets that are accessed using MaterialApp class. 
-Using this widget, we can make an attractive application in Flutter.</p>
+<div>
+	<p>Flutter Text widget allows you to display text in your Flutter
+		application.</p>
+	create an application:
+	<p>In this application we use Scaffold widget wrapped with
+		MaterialApp widget because MaterialApp is a predefined class in a
+		flutter. It is likely the main or core component of flutter. We can
+		access all the other components and widgets provided by Flutter SDK
+		like Text widget, DropDownButton widget, AppBar widget, Scaffold
+		widget, ListView widget, StatelessWidget, StatefulWidget, IconButton
+		widget, TextField widget, Padding widget, ThemeData widget, etc. are
+		the widgets that can be accessed using MaterialApp class. There are
+		many more widgets that are accessed using MaterialApp class. Using
+		this widget, we can make an attractive application in Flutter.</p>
 
-<p>Now here main method is an entry point from where your application start.</p>
+	<p>Now here main method is an entry point from where your
+		application start.</p>
 
-<b>A widget is either stateful or stateless.</b> 
-<p>If a widget can change—when a user interacts with it, for example —> it’s stateful.</p>
+	<b>A widget is either stateful or stateless.</b>
+	<p>If a widget can change—when a user interacts with it, for
+		example —> it’s stateful.</p>
 
-<p>A stateless widget never changes. Icon, IconButton, and Text are examples of stateless widgets. 
-Stateless widgets subclass StatelessWidget.</p>
+	<p>A stateless widget never changes. Icon, IconButton, and Text are
+		examples of stateless widgets. Stateless widgets subclass
+		StatelessWidget.</p>
 
-<p>A stateful widget is dynamic: for example, it can change its appearance in response to events triggered by user interactions or when it receives data. 
-Checkbox, Radio, Slider, InkWell, Form, and TextField are examples of stateful widgets. 
-Stateful widgets subclass StatefulWidget.</p>
+	<p>A stateful widget is dynamic: for example, it can change its
+		appearance in response to events triggered by user interactions or
+		when it receives data. Checkbox, Radio, Slider, InkWell, Form, and
+		TextField are examples of stateful widgets. Stateful widgets subclass
+		StatefulWidget.</p>
 
-<p>A widget’s state is stored in a State object, separating the widget’s state from its appearance. 
-The state consists of values that can change, like a slider’s current value or whether 
-a checkbox is checked. When the widget’s state changes, the state object calls setState(), 
-telling the framework to redraw the widget.</p>
+	<p>A widget’s state is stored in a State object, separating the
+		widget’s state from its appearance. The state consists of values that
+		can change, like a slider’s current value or whether a checkbox is
+		checked. When the widget’s state changes, the state object calls
+		setState(), telling the framework to redraw the widget.</p>
 
-<p>So we are using StatelessWidget because we want to used Text widget.</p>
-
-<pre>
-<code style="font-family: 'Big Shoulders Stencil Display', cursive;
-font-family: 'Inconsolata', monospace;">
+	<p>So we are using StatelessWidget because we want to used Text
+		widget.</p>
+	<pre>
+<code>
 import 'package:flutter/material.dart';
 
 void main() {
@@ -85,7 +89,8 @@ Widget getTextWidget(BuildContext context) {
     child: Center(
       //using child we can also add another widget 
       child: Text(
-        "Hello Text Widget Hello Text Widget Hello Text Widget Hello Text Widget Hello Text Widget Hello Text Widget",
+        "Hello Text Widget Hello Text Widget Hello Text Widget 
+        Hello Text Widget Hello Text Widget Hello Text Widget",
         //font size given by the user setting that is not fix
         textScaleFactor: 2,
         maxLines: 1,
@@ -105,5 +110,79 @@ Widget getTextWidget(BuildContext context) {
       ),
     ),
   );
-}</code></pre>
+}
+</code>
+</pre>
+
+	<div align="center">
+		<img src="images/text_1.png" width="250" height="400">
+	</div>
+
+	<p>
+		<b>Example of Text Widget:</b>
+	</p>
+	<div align="center">
+		<img src="images/text.png" width="250" height="400" >
+	</div>
+	<pre>
+<code>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: "My App",
+    home: TextWidget(),
+  ));
+}
+
+class TextWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Text Widget Tutorial",
+          style: TextStyle(color: Colors.black),
+        ),
+        leading:  Icon(
+          Icons.text_fields,
+          size: 24,
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.yellow,
+      ),
+      body: Container(
+        color: Colors.yellowAccent,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.all(5),
+        child: Text(
+          "In this example we can learn Text widget in 
+          Flutter like how to use and styling etc.",
+          style: TextStyle(
+              fontSize: 20,
+              color: Colors.indigo,
+              fontStyle: FontStyle.italic,
+              fontFamily: "serif",
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline,
+              decorationStyle: TextDecorationStyle.dashed,
+              decorationThickness: 2,
+              decorationColor: Colors.red,
+              letterSpacing: 3,
+              wordSpacing: 4),
+          softWrap: true,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr,
+          textWidthBasis: TextWidthBasis.longestLine,
+          maxLines: 4,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+    );
+  }
+}
+</code>
+</pre>
 </div>
