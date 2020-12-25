@@ -1,38 +1,358 @@
-<h1>Container Widget Tutorial</h1>
-<p>Container widget is used to contain a child widget with the
-	ability to apply some styling properties. If the Container widget has
-	no child it will automatically fill the given area on the screen,
-	otherwise it will wrap the height & width of the given child element.</p>
-<b> Container Widget should not render directly without any parent
-	widget. You can use Center widget, Padding Widget, Column Widget, Row
-	Widget or Scaffold Widget as parent. </b>
-<p>This widget can only have one child. To layout multiple children,
-	let this widget’s child be a widget such as Row, Column, or Stack,
-	which have a children property, and then provide the children to that
-	widget.</p>
+<div>
+<h1>Flutter Container Widget</h1>
+<p>Container widget is used to contain a child widget with the ability to apply some styling properties. If the Container widget has no child it will automatically fill the given area on the screen,
+otherwise it will wrap the height & width of the given child element.
+</p>
+<p>Container Widget should not render directly without any parent widget. You can use Center widget, Padding Widget, Column Widget, Row Widget or Scaffold Widget as parent.</p>
+<p>This widget can only have one child. To layout multiple children, let this widget’s child be a widget such as Row, Column, or Stack, which have a children property, and then provide the children to that widget.</p>
+<h3>Example:</h3>
 <pre>
-	color: Color.fromARGB(255, 66, 165, 245),
-    alignment: AlignmentDirectional(0.0, 0.0),
-    alignment: Alignment.bottomCenter,
-	margin: EdgeInsets.all(20.0),
-	margin: EdgeInsets.symmetric(
-        vertical: 20.0,
-        horizontal: 50.0
+<code>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: "My App",
+    home: ContainerWidget(),
+    theme: ThemeData(
+      primarySwatch: Colors.pink,
+    ),
+  ));
+}
+
+class ContainerWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Container Widget Tutorial"),
       ),
-      padding: new EdgeInsets.all(40.0),
-      </pre>
-<p>If you want apply decoration in Container:</p>
+      body: Container(
+
+      ),
+    );
+  }
+}
+
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image001.png" width="250" height="400"></div>
+
 <pre>
-      decoration: BoxDecoration(  
-            border: Border.all(color: Colors.black, width: 4),  
-            borderRadius: BorderRadius.circular(8),  
-            boxShadow: [  
-             BoxShadow(color: Colors.yellow, offset: Offset(6.0, 6.0),),  
-            ],  
-       ),  
-      </pre>
-<p>If you want to transform the container widget in any axis like
-	x,y or z:</p>
+<b>To change background color we use following code:</b>
+<code>
+body: Container(
+  color: Colors.pinkAccent,
+),
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image003.png" width="250" height="400"></div>
+
 <pre>
-      transform: Matrix4.rotationZ(0.5),
-      </pre>
+<b>If you add any widget then containe take that widget size:</b>
+<code>
+body: Container(
+  color: Colors.pinkAccent,
+  child: ElevatedButton(
+    child: Text("Click Me"),
+    onPressed: (){},
+  ),
+),
+
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image005.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want full width of widget then:</b>
+<code>
+body: Container(
+  color: Colors.pinkAccent,
+  width: MediaQuery.of(context).size.width,
+  child: ElevatedButton(
+    child: Text("Click Me"),
+    onPressed: (){},
+  ),
+
+),
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image007.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to align the widget in any position in device then:</b>
+<code>
+body: Align(
+  alignment: Alignment.bottomCenter,
+  child: Container(
+    color: Colors.pinkAccent,
+    width: MediaQuery.of(context).size.width,
+    child: ElevatedButton(
+      child: Text("Click Me"),
+      onPressed: (){},
+    ),
+
+  ),
+),
+
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image009.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to give fixed size of your widget then:</b>
+<code>
+body: Align(
+  alignment: Alignment.bottomCenter,
+  child: Container(
+    color: Colors.pinkAccent,
+    width: 200,
+    child: ElevatedButton(
+      child: Text("Click Me"),
+      onPressed: (){},
+    ),
+
+  ),
+),
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image011.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to rotate or transform your widget then:</b>
+<code>
+body: Align(
+  alignment: Alignment.bottomCenter,
+  child: Container(
+    color: Colors.pinkAccent,
+    width: 200,
+    child: ElevatedButton(
+      child: Text("Click Me"),
+      onPressed: (){},
+    ),
+transform: Matrix4.rotationZ(0.5),
+  ),
+),
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image013.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to apply the linear gradient in boxdecoration then:</b>
+<code>
+body: Align(
+  alignment: Alignment.bottomCenter,
+  child: Container(
+    color: Colors.pinkAccent,
+    width: 200,
+    child: ElevatedButton(
+      child: Text("Click Me"),
+      onPressed: (){},
+    ),
+decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [
+          Colors.green,Colors.red,Colors.yellowAccent,
+        ],
+      ),
+
+  ),
+),
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image015.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to apply the radial gradient in boxdecoration then:</b>
+<code>
+body: Align(
+  alignment: Alignment.bottomCenter,
+  child: Container(
+    color: Colors.pinkAccent,
+    width: 200,
+    child: ElevatedButton(
+      child: Text("Click Me"),
+      onPressed: (){},
+    ),
+decoration: BoxDecoration(
+      gradient: RadialGradient(
+        colors: [
+          Colors.green,Colors.red,Colors.yellowAccent,
+        ],
+      ),
+
+  ),
+),
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image017.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to apply the color in boxdecoration then:</b>
+<code>
+body: Align(
+  alignment: Alignment.bottomCenter,
+  child: Container(
+    color: Colors.pinkAccent,
+    width: 200,
+    child: ElevatedButton(
+      child: Text("Click Me"),
+      onPressed: (){},
+    ),
+decoration: BoxDecoration(
+      color:Colors.green;
+  ),
+),
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image019.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to apply the image in boxdecoration then:</b>
+<code>
+body: Align(
+  alignment: Alignment.center,
+  child: Container(
+    //color: Colors.pinkAccent,
+    width: 200,
+    height: 200,
+    decoration: BoxDecoration(
+      color: Colors.green,
+      image: DecorationImage(
+        image: NetworkImage("https://www.drivespark.com/images/2020-06/2021-bmw-m5-competition-exterior-5.jpg"),
+        
+      ),
+    ),
+  ),
+),
+
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image021.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to apply the image in with fit then:</b>
+<code>
+body: Align(
+  alignment: Alignment.center,
+  child: Container(
+    //color: Colors.pinkAccent,
+    width: 200,
+    height: 200,
+    decoration: BoxDecoration(
+      color: Colors.green,
+      image: DecorationImage(
+        image: NetworkImage("https://www.drivespark.com/images/2020-06/2021-bmw-m5-competition-exterior-5.jpg"),
+        fit: BoxFit.cover,
+      ),
+    ),
+  ),
+),
+
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image023.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to apply the boxshadow and image filter then:</b>
+<code>
+body: Align(
+  alignment: Alignment.center,
+  child: Container(
+    //color: Colors.pinkAccent,
+    width: 200,
+    height: 200,
+    decoration: BoxDecoration(
+      color: Colors.green,
+      image: DecorationImage(
+        image: NetworkImage("https://www.drivespark.com/images/2020-06/2021-bmw-m5-competition-exterior-5.jpg"),
+        fit: BoxFit.cover,
+        colorFilter: ColorFilter.linearToSrgbGamma(),
+      ),
+      boxShadow: [
+        BoxShadow(color: Colors.grey, offset: Offset(6.0, 6.0),),
+      ],
+      
+    ),
+  ),
+),
+
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image029.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to apply the boxshadow and image filter with border radius then:</b>
+<code>
+body: Align(
+  alignment: Alignment.center,
+  child: Container(
+    //color: Colors.pinkAccent,
+    width: 200,
+    height: 200,
+    decoration: BoxDecoration(
+      color: Colors.green,
+      image: DecorationImage(
+        image: NetworkImage("https://www.drivespark.com/images/2020-06/2021-bmw-m5-competition-exterior-5.jpg"),
+        fit: BoxFit.cover,
+        colorFilter: ColorFilter.linearToSrgbGamma(),
+      ),
+      boxShadow: [
+        BoxShadow(color: Colors.grey, offset: Offset(6.0, 6.0),),
+      ],
+	borderRadius: BorderRadius.circular(8),
+    ),
+  ),
+),
+
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image031.png" width="250" height="400"></div>
+
+<pre>
+<b>If you want to apply the boxshadow and image filter with shape and border color then:</b>
+<code>
+body: Align(
+  alignment: Alignment.center,
+  child: Container(
+    //color: Colors.pinkAccent,
+    width: 200,
+    height: 200,
+    decoration: BoxDecoration(
+      color: Colors.green,
+      image: DecorationImage(
+        image: NetworkImage("https://www.drivespark.com/images/2020-06/2021-bmw-m5-competition-exterior-5.jpg"),
+        fit: BoxFit.cover,
+        colorFilter: ColorFilter.linearToSrgbGamma(),
+      ),
+      boxShadow: [
+        BoxShadow(color: Colors.grey, offset: Offset(6.0, 6.0),),
+      ],
+      border:Border.all(color: Colors.yellowAccent, width: 4),
+	  shape: BoxShape.circle,
+    ),
+  ),
+),
+
+</code>
+</pre>
+<p>Output:</p>
+<div align="center"><img src="images/image037.png" width="250" height="400"></div>
+
+
+</div>

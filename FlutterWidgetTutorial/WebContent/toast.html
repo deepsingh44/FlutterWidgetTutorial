@@ -1,14 +1,14 @@
-<h1>Toast Tutorial in Flutter</h1>
+<h1>Flutter Toast Tutorial</h1>
 <p>In Flutter we can also use Toast just like Android but for this
 	we need to add below dependency in pubspec.yaml file.</p>
 <b>fluttertoast: ^7.1.5</b>
-<p>After adding this dependency we need to pub get to get
+<p>After adding this dependency we need to pub get to get the
 	dependency.</p>
 <p>For use of Flutter Toast firstly we need to import its package
 	then use the class.</p>
 <b>import 'package:fluttertoast/fluttertoast.dart';</b>
 <pre>
-<code>
+<code>			
 			  Fluttertoast.showToast(
               msg: "Hello Friends",
               backgroundColor: Colors.orange,
@@ -19,3 +19,115 @@
             );
 </code>
 </pre>
+
+<div align="center">
+<table>
+<tr><td>Property</td><td>Description</td></tr>
+<tr><td>msg</td><td>It contain String type of message.</td></tr>
+<tr><td>backgroundColor</td><td>It is used to changed background color.</td></tr>
+<tr><td>toastLength</td><td>It contain Toast.LENGTH_SHORT or Toast.LENGTH_LONG.</td></tr>
+<tr><td>gravity</td><td>It represent the position ToastGravity.BOTTOM, ToastGravity.TOP, ToastGravity.CENTER etc.</td></tr>
+<tr><td>fontSize</td><td>It is used to changed text font size.</td></tr>
+<tr><td>textColor</td><td>It is used to changed text color.</td></tr>
+</table>
+</div>
+
+<div>
+<h2>Default Toast Example:</h2>
+<pre>
+<code>
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(accentColor: Colors.orange),
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text("Toast Tutorial"),
+      ),
+      body: MyToast(),
+    ),
+  ));
+}
+
+class MyToast extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        child: Text("Toast Me"),
+        onPressed: () =>showMe("Toast Example") ,
+      ),
+    );
+  }
+}
+
+showMe(String value) {
+  Fluttertoast.showToast(
+    msg: value,
+  );
+}
+</code>
+</pre>
+<b>Output is:</b>
+<div align="center"><img src="images/toast1.png" width="250" height="400"></div>
+</div>
+<div>
+<h2>Set some property in Toast Example:</h2>
+<div>
+<pre>
+<code>
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(accentColor: Colors.orange),
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text("Toast Tutorial"),
+      ),
+      body: MyToast(),
+    ),
+  ));
+}
+
+class MyToast extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        child: Text("Toast Me"),
+        onPressed: () =>showMe("Toast Example") ,
+      ),
+    );
+  }
+}
+
+showMe(String value) {
+  Fluttertoast.showToast(
+    //this is your message
+    msg: value,
+    //this is display time
+    toastLength: Toast.LENGTH_SHORT,
+    //this is position of toast
+    gravity: ToastGravity.BOTTOM,
+    //this is for background color
+    backgroundColor: Colors.red,
+    //this for text color
+    textColor: Colors.white,
+    //this is for font size
+    fontSize: 14.0,
+  );
+}
+</code>
+</pre>
+<b>Output is:</b>
+<div align="center"><img src="images/toast2.png" width="250" height="400"></div>
+</div>
+</div>
+</div>
+
