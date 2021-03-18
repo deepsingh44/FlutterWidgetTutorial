@@ -1,2 +1,114 @@
 <h1>Divider in Flutter</h1>
-<p>Divider is used to divide a</p>
+<p>Divider widget is used to create horizontal divider line between
+	views.</p>
+<p>Divider has following properties:</p>
+<pre>
+Divider(
+//height is used to increase the divider height.
+height: 2,
+//The thickness of the line drawn within the divider.
+thickness: 2,
+//It is used to set color of line.
+color: Colors.white,
+//The amount of empty space to the trailing edge of the divider.
+endIndent: 20,
+//The amount of empty space to the leading edge of the divider.
+indent: 20,
+),
+</pre>
+<div align="center">
+<img src="images/divider.png">
+</div>
+<p><b>For Example:</b></p>
+<pre>
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Title"),
+        ),
+        body: MyBody(),
+      ),
+    );
+  }
+}
+
+class MyBody extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        //height: MediaQuery.of(context).size.height,
+        margin: EdgeInsets.only(top: 10,bottom: 10),
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            padding: EdgeInsets.only(top: 10,bottom: 10),
+            //color: Colors.green,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.only(left: 20,right: 20),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Login Here"),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        height: 2,
+                        thickness: 2,
+                        color: Colors.blueGrey,
+                        endIndent: 20,
+                        indent: 20,
+                      ),
+                    ),
+                    Text("OR"),
+                    Expanded(
+                      child: Divider(
+                        height: 2,
+                        thickness: 2,
+                        color: Colors.blueGrey,
+                        endIndent: 20,
+                        indent: 20,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.only(left: 20,right: 20),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Register Here"),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+}
+</pre>
+
