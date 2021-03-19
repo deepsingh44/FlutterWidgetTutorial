@@ -1,0 +1,122 @@
+<div>
+	<h1>FutureBuilder in Flutter</h1>
+	<p>FutureBuilder is a Widget that will help you to execute some
+		asynchronous function and based on that function’s result your UI will
+		update.</p>
+	<p>In FutureBuilder, it calls the future function to wait for the
+		result, and as soon as it produces the result it calls the builder
+		function where we build the widget.</p>
+	<p>
+		<b>AsyncSnapshot has following state:</b>
+	</p>
+	<ol>
+		<li>ConnectionState.none = In this state future is null</li>
+		<li>ConnectionState.waiting = future is not null, but has not yet
+			completed</li>
+		<li>ConnectionState.done = future is not null, and has completed.</li>
+		<li>ConnectionState.active: It means the future is not null but it is not resolved yet.</li>
+	</ol>
+	<p>If the future completed successfully, the AsyncSnapshot.data
+		will be set to the value to which the future completed. If it
+		completed with an error, AsyncSnapshot.hasError will be true.</p>
+	<div align="center">
+		<img src="images/futurebuilder.png">
+	</div>
+	<pre>
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Title"),
+        ),
+        body: MyBody(),
+      ),
+    );
+  }
+}
+
+class MyBody extends StatefulWidget {
+  @override
+  _MyBodyState createState() => _MyBodyState();
+}
+
+class _MyBodyState extends State&lt;MyBody&gt; {
+  var result = "";
+
+  Widget projectWidget() {
+    return FutureBuilder(
+      future: getData(), // async work
+      builder: (BuildContext context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return Center(child: CircularProgressIndicator(color: Colors.green,));
+          case ConnectionState.none:
+            return Center(child: CircularProgressIndicator(color: Colors.blue,));
+          default:
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              var data = snapshot.data as http.Response;
+              var parsedJson = json.decode(data.body);
+              List userObjs =
+                  parsedJson.map((tagJson) => User.fromJson(tagJson)).toList();
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  var user = userObjs[index] as User;
+                  return Column(
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.edit,color: Colors.blue,),
+                        title: Text(user.id.toString()),
+                        subtitle: Text(user.name,style: TextStyle(fontStyle: FontStyle.italic),),
+                      ),
+                      Divider(thickness: 2,color: Colors.grey,),
+                    ],
+                  );
+                },
+                itemCount: userObjs.length,
+                shrinkWrap: true,
+              );
+            }
+        }
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return projectWidget();
+  }
+
+  Future getData() async {
+    var result =
+        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
+    return result;
+  }
+
+}
+
+class User {
+  int id;
+  String name;
+
+  User(this.id, this.name);
+
+  factory User.fromJson(dynamic json) {
+    return User(json['id'], json['name']);
+  }
+}
+
+</pre>
+</div>

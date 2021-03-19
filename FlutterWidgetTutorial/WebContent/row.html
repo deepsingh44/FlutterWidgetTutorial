@@ -4,5 +4,53 @@
 <p>The Row widget does not scroll. If you have a line of widgets and
 	want them to be able to scroll if there is insufficient room, consider
 	using a ListView Widget.</p>
-	
-	
+<p>row aligns its children using the mainAxisAlignment and
+	crossAxisAlignment properties.</p>
+<p>The mainAxisAlignment runs horizontally and the
+	crossAxisAlignment runs vertically for a row widget.</p>
+<div align="center">
+	<img alt="" src="images/row.png">
+</div>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Title"),
+        ),
+        body: MyBody(),
+      ),
+    );
+  }
+}
+
+class MyBody extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      //If MainAxisSize is min then mainAxisAlignment is useless
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        ElevatedButton(
+          onPressed: () {},
+          child: Text("Button"),
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: Text("Button"),
+        ),
+      ],
+    );
+  }
+}
+
+</pre>
