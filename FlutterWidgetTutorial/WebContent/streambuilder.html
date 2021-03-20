@@ -1,0 +1,90 @@
+<div>
+	<h1>Streambuilder in Flutter</h1>
+	<p></p>
+	<pre>
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My Title"),
+        ),
+        body: MyBody(),
+      ),
+    );
+  }
+}
+
+class MyBody extends StatefulWidget {
+  @override
+  _MyBodyState createState() => _MyBodyState();
+}
+
+class _MyBodyState extends State&lt;MyBody&gt; {
+  var result = "";
+
+  Widget projectWidget() {
+    return StreamBuilder(
+      stream: getData().asStream(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text("");
+        } else if (snapshot.data == null) {
+          return CircularProgressIndicator();
+        } else {
+          var data = snapshot.data as http.Response;
+          var parsedJson = json.decode(data.body);
+          List userObjs =
+              parsedJson.map((tagJson) => User.fromJson(tagJson)).toList();
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: userObjs.length,
+            itemBuilder: (context, index) {
+              var user = userObjs[index] as User;
+              return ListTile(
+                title: Text(user.id.toString()),
+                subtitle: Text(user.name),
+              );
+            },
+          );
+        }
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return projectWidget();
+  }
+
+  Future getData() async {
+    var result =
+        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
+    return result;
+  }
+}
+
+class User {
+  int id;
+  String name;
+
+  User(this.id, this.name);
+
+  factory User.fromJson(dynamic json) {
+    return User(json['id'], json['name']);
+  }
+}
+
+
+	</pre>
+</div>
